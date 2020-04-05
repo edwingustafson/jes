@@ -127,12 +127,17 @@ mkdir -p "$JESCONFIGDIR"
 
 export CFProcessPath="$0"
 
+# Skip macOS dock options on Linux
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    JES_JAVA_OPTIONS_DOCK=
+else
+    JES_JAVA_OPTIONS_DOCK=-Xdock:icon="${CFBundleIconFile}"\ -Xdock:name="${CFBundleName}"
+fi
+
 # All right, time to actually run it!
 
 exec "$JAVA" \
     -classpath "$CLASSPATH" \
-    -Xdock:icon="${CFBundleIconFile}" \
-    -Xdock:name="${CFBundleName}" \
     -Dfile.encoding="UTF-8" \
     -Djes.home="$JES_HOME" \
     -Djes.configfile="$JESCONFIG" \
@@ -143,6 +148,6 @@ exec "$JAVA" \
     -Dpython.path="$PYTHONPATH" \
     -Dpython.cachedir="$PYTHONCACHE" \
     -Dapple.laf.useScreenMenuBar=true \
-    ${JES_JAVA_MEMORY:--Xmx512m} ${JES_JAVA_OPTIONS} \
+    ${JES_JAVA_MEMORY:--Xmx512m} ${JES_JAVA_OPTIONS} ${JES_JAVA_OPTIONS_DOCK} \
     JESstartup "$@"
 
