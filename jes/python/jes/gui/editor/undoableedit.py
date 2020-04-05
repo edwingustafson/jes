@@ -7,13 +7,13 @@ An implementation of AbstractUndoableEdit for the UndoManager.
 :copyright: (C) 2008 Buck Scharfnorth
 :license:   GNU GPL v2 or later, see jes/help/JESCopyright.txt for details
 """
-import javax.swing as swing
+from javax.swing.undo import AbstractUndoableEdit
 
 INSERT_EVENT = 1
 REMOVE_EVENT = 2
 MAX_UNDO_EVENTS_TO_RETAIN = 500
 
-class UndoableEdit(swing.undo.AbstractUndoableEdit):
+class UndoableEdit(AbstractUndoableEdit):
 
     ######################################################################
     # Function name: __init__
@@ -40,7 +40,7 @@ class UndoableEdit(swing.undo.AbstractUndoableEdit):
 ######################################################################
     def undo(self):
         try:
-            swing.undo.AbstractUndoableEdit.undo(self)
+            AbstractUndoableEdit.undo(self)
             lastEvent = self.getUndoEvent()
             if lastEvent[0] == INSERT_EVENT:
                 self.document.remove(lastEvent[1], len(lastEvent[2]), 0)
@@ -57,7 +57,7 @@ class UndoableEdit(swing.undo.AbstractUndoableEdit):
 ######################################################################
     def redo(self):
         try:
-            swing.undo.AbstractUndoableEdit.redo(self)
+            AbstractUndoableEdit.redo(self)
             lastEvent = self.getUndoEvent()
             if lastEvent[0] == REMOVE_EVENT:
                 self.document.remove(lastEvent[1], len(lastEvent[2]), 0)

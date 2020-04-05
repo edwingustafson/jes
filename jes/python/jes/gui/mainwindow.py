@@ -37,6 +37,7 @@ from java.awt import Event
 from java.awt.event import ActionListener, FocusListener, KeyEvent
 from java.lang import Short, System, Thread
 from javax.swing import Action, UIManager, SwingUtilities
+from javax.swing.plaf.metal import MetalIconFactory
 
 from jes.gui.commandwindow import CommandWindowController
 from jes.gui.commandwindow.themes import THEME_NAMES
@@ -1345,8 +1346,7 @@ class hideRight(swing.JPanel):
 
     def __init__(self, actionPerformed):
         swing.JPanel.__init__(self)
-        hideRight = swing.JButton(
-            swing.plaf.metal.MetalIconFactory.getInternalFrameCloseIcon(16))
+        hideRight = swing.JButton(MetalIconFactory.getInternalFrameCloseIcon(16))
         hideRight.setBorderPainted(0)
         hideRight.setContentAreaFilled(0)
         hideRight.setAlignmentX(swing.JButton.RIGHT_ALIGNMENT)
