@@ -64,7 +64,7 @@
 #
 
 
-from java.awt.event import *
+from java.awt.event import ActionListener
 from java.util import Timer as JTimer
 from java.util import TimerTask as JTimerTask
 

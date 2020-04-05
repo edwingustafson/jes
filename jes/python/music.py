@@ -1274,7 +1274,7 @@ from jm.util import Play as jPlay  # needed to wrap more functionality below
 # This class is not meant to be instantiated, hence no "self" in function definitions.
 # Functions are made callable through class Callable, above.
 
-from javax.sound.midi import *
+from javax.sound.midi import MidiSystem
 
 # NOTE: Opening the Java synthesizer below generates some low-level noise in the audio output.
 # But we need it to be open, in case the end-user wishes to use functions like Play.noteOn(), below. 
