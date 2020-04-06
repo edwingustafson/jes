@@ -62,7 +62,7 @@ if [ ! -x "$JAVA" ]; then
 fi
 
 
-# Where's our Java code?gt
+# Where's our Java code?
 
 JARS="$JES_BASE/dependencies/jars"
 
